@@ -64,6 +64,7 @@ namespace project_manager
             services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(Configuration["AppSettings:PrivateTokenKey"]));
             services.AddSingleton<IProjectsManager, ProjectsManager>();
             services.AddSingleton<ITasksManager, TasksManager>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

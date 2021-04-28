@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using project_manager.common.Utils;
 using project_manager.data.Models;
 using System.IO;
 
@@ -14,7 +15,7 @@ namespace project_manager.data.Context
 
         private readonly string _connectionString = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appSettings.json")
+            .AddJsonFile("appsettings.json")
             .AddJsonFile("appsettings.Development.json")
             .Build()
             .GetConnectionString("SqlServer");

@@ -23,4 +23,4 @@ RUN dotnet publish "project_manager.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "project_manager.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet project_manager.dll

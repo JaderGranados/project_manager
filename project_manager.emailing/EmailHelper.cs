@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using project_manager.common.Models;
+using project_manager.common.Utils;
 
 namespace project_manager.emailing
 {
@@ -16,7 +17,7 @@ namespace project_manager.emailing
                 var model = emailModel as EmailModel;
                 IConfiguration configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appSettings.json")
+                .AddJsonFile("appsettings.json")
                 .AddJsonFile("appsettings.Development.json")
                 .Build();
                 string emailOrigen = configuration["EmailData:OriginEmail"];

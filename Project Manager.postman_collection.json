@@ -1,0 +1,580 @@
+{
+	"info": {
+		"_postman_id": "e1d7b828-fd21-40bb-849c-09e156fcfc67",
+		"name": "Project Manager",
+		"description": "Awesome that allows you to manage your projects and tasks\n\n<b>Github</b>: <i>https://github.com/JaderGranados/project_manager</i><br/>\n<b>Heroku</b>: <i>https://project-manager-jader.herokuapp.com</i>\n\nBearer token lasts 1 hour",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/users/",
+			"item": [
+				{
+					"name": "Users List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "<p>Endpoint that returns a list of users</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": [users]?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Junior\",\r\n    \"LastName\": \"Meza\",\r\n    \"UserName\": \"junior.meza\",\r\n    \"Password\": \"password123\",\r\n    \"Email\": \"jadergranados@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "<p>Endpoint that allows admins create users with operator role</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>201: Created</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"mateo.granados\",\r\n    \"oldpassword\": \"password123\",\r\n    \"newpassword\": \"Colombia2018\",\r\n    \"repeatnewpassowrd\": \"Colombia201\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/users/change-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"change-password"
+							]
+						},
+						"description": "<p>Endpoint that allows users change their passwords</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Activate and desactivate users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users/activate-desactivate/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"activate-desactivate",
+								"1"
+							]
+						},
+						"description": "<p>Endpoint that allows admins activate or desactivate role operator users</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoint's for users management"
+		},
+		{
+			"name": "authenticate/",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jader.granados\",\r\n    \"password\": \"Colombia2018\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						},
+						"description": "<p>Endpoint that allows users send their credentials and get back a bearer token that lasts 1 hour</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>401: Unauthorize</li>\n<li>403: Forbbiden</li>\n</ul>\n\n<code>No content</code>\n\n<h3>Good requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints"
+		},
+		{
+			"name": "api/projects/",
+			"item": [
+				{
+					"name": "Projects list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/projects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						},
+						"description": "<p>Endpoint that returns a list of projects</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": [projects]?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"American dist\",\r\n    \"description\": \"New project for American dist\",\r\n    \"startdate\": \"2021-05-27T15:00\",\r\n    \"enddate\": \"2021-06-20T00:00\",\r\n    \"modiffiername\": \"jader.granados\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/projects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						},
+						"description": "<p>Endpoint that allows users create projects</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>201: Created</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"American dist\",\r\n    \"description\": \"New project for American dist\",\r\n    \"enddate\": \"2021-06-27T00:00\",\r\n    \"modiffiername\": \"jader.granados\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:54733/api/projects/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "54733",
+							"path": [
+								"api",
+								"projects",
+								"1"
+							]
+						},
+						"description": "<p>Endpoint that allows users edit projects</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/projects/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"4"
+							]
+						},
+						"description": "<p>Endpoint that allows users delete projects</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "End project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/projects/end-project/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"end-project",
+								"4"
+							]
+						},
+						"description": "<p>Endpoint that allows users end projects</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for projects"
+		},
+		{
+			"name": "api/tasks",
+			"item": [
+				{
+					"name": "Tasks list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						},
+						"description": "<p>Endpoint that returns a list of tasks</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": [tasks]?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Schedule an initial meeting\",\r\n    \"Description\": \"Schedule an initial meeting with costumers\",\r\n    \"EjecutionDate\": \"2021-05-29T15:00\",\r\n    \"ProjectId\": 4,\r\n    \"ModifierBy\": \"manuel.martinez\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/tasks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						},
+						"description": "<p>Endpoint that allows users create tasks</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>201: Created</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"Schedule an initial meeting\",\r\n    \"Description\": \"Schedule an initial meeting with costumers and product owner\",\r\n    \"EjecutionDate\": \"2021-05-29T15:00\",\r\n    \"ModifierBy\": \"manuel.martinez\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/tasks/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						},
+						"description": "<p>Endpoint that allows users edit tasks</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/tasks/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						},
+						"description": "<p>Endpoint that allows users delete tasks</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "End task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tasks/end-task/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"end-task",
+								"3"
+							]
+						},
+						"description": "<p>Endpoint that allows users end tasks</p>\n\n<h3>Bad requests</h3>\n\n<h4>Status codes</h4>\n<ul>\n<li>400: Bad request</li>\n<li>500: Server error</li>\n</ul>\n\n<h3>Good requests</h3>\n<h4>Status codes</h4>\n<ul>\n<li>200: Ok</li>\n</ul>\n\n<code>{</br>\n    &emsp;\"success\": boolean,</br>\n    &emsp;\"message\": string?,</br>\n    &emsp;\"data\": string?</br>\n}</code>"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for tasks"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImphZGVyLmdyYW5hZG9zIiwiZW1haWwiOiJqYWRlcmdyYW5hZG9zQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTYxOTYwNDcxNywiZXhwIjoxNjE5NjA4MzE3LCJpYXQiOjE2MTk2MDQ3MTd9.qU0pYKrkP2pkkq7L24trvHM4TscYtL3VZUQc-LpDmc4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://project-manager-jader.herokuapp.com"
+		}
+	]
+}
