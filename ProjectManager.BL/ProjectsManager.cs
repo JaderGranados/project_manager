@@ -87,7 +87,7 @@ namespace project_manager.bl
                 using (ApplicationDBContext _context = new ApplicationDBContext())
                 {
                     var oldProject = _context.Project.Include(x => x.Tasks).Where(x => x.ProjectId == id).FirstOrDefault();
-                    if (_context.User.Any(x => x.UserName == model.ModiffierName.Trim().ToLower()))
+                    if (!_context.User.Any(x => x.UserName == model.ModiffierName.Trim().ToLower()))
                     {
                         throw new ServerException(400, "The person who is triying to modify this project doesn't exist");
                     }
