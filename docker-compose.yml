@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  project_manager:
+    image: ${DOCKER_REGISTRY-}projectmanager
+    build:
+      context: .
+      dockerfile: project_manager/Dockerfile
